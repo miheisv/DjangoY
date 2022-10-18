@@ -1,15 +1,18 @@
 """Django settings for lyceum project, using Django 3.2."""
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-r8=%sluies-mn_y=k7x7_0mgd1@ksyapx#9'+
-+'unl1f5!4v$w6oj'
+SECRET_KEY = os.getenv("SECRET_KEY", default='nokey')
 
-DEBUG = True
+DEBUG = os.getenv("DEBUG") == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", default="*")
 
 INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
@@ -62,20 +65,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.'+
-            +'UserAttributeSimilarityValidator',
+        'NAME': ('django.contrib.auth.password_validation.'
+            'UserAttributeSimilarityValidator'),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.'+
-            +'MinimumLengthValidator',
+        'NAME': ('django.contrib.auth.password_validation.' 
+            'MinimumLengthValidator'),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.'+
-            +'CommonPasswordValidator',
+        'NAME': ('django.contrib.auth.password_validation.'
+            'CommonPasswordValidator'),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.'+
-            +'NumericPasswordValidator',
+        'NAME': ('django.contrib.auth.password_validation.'
+            'NumericPasswordValidator'),
     },
 ]
 

@@ -2,6 +2,7 @@
 
 ## Django проект для Интенсива
 
+[![Python package](https://github.com/miheisv/DjangoY/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/miheisv/DjangoY/actions/workflows/python-package.yml)
 
 *C чего начать?*
 

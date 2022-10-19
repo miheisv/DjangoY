@@ -2,8 +2,7 @@
 
 ## Django проект для Интенсива
 
-[![Python package](https://github.com/miheisv/DjangoY/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/miheisv/DjangoY/actions/workflows/python-package.yml)
-
+[![Python package](https://github.com/miheisv/DjangoY/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/miheisv/DjangoY/actions/workflows/python-package.yml) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1926cd65460f4e8ca7c4c276885562fa)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=miheisv/DjangoY&amp;utm_campaign=Badge_Grade)
 *C чего начать?*
 
 > ### 0. Preparation.

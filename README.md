@@ -3,7 +3,7 @@
 ## Django проект для Интенсива
 
 [![ExampleProject on PyPI](https://img.shields.io/pypi/v/dohq-example-project.svg)](https://pypi.python.org/pypi/dohq-example-project) [![Python package](https://github.com/miheisv/DjangoY/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/miheisv/DjangoY/actions/workflows/python-package.yml) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1926cd65460f4e8ca7c4c276885562fa)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=miheisv/DjangoY&amp;utm_campaign=Badge_Grade)
-
+![Github commit](https://img.shields.io/github/checks-status/miheisv/DjangoY/2dd4a45872bab8cb2caba121808fec0c4b869648)
 *C чего начать?*
 
 > ### 0. Preparation.

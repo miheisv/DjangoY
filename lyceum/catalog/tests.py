@@ -30,5 +30,5 @@ class StaticURLTests(TestCase):
 
     # endpoind url test
     def test_homepage_end(self):
-        response = Client.get(path=/catalog/1abc/')
+        response = Client.get(path='/catalog/1abc/')
         self.assertEqual(response.status_code, 404)

@@ -3,12 +3,7 @@ from django.test import TestCase, Client
 
 class StaticURLTests(TestCase):
 
-    # item_list test
-    def test_catalog_list(self):
-        response = Client().get(path='/')
-        self.assertEqual(response.status_code, 200)
-
-    # item_detail 'catalog/' test
+    # item_list 'catalog/' test
     def test_catalog_detail(self):
         response = Client().get(path='/catalog/')
         self.assertEqual(response.status_code, 200)

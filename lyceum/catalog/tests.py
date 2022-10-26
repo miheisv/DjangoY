@@ -10,7 +10,7 @@ class StaticURLTests(TestCase):
 
     # item_detail 'catalog/123' test
     def test_homepage_detail_num(self):
-        response = Client().get(path='/catalog/123')
+        response = Client().get(path='/catalog/123/')
         self.assertEqual(response.status_code, 200)
 
     # zero test

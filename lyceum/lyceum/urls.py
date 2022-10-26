@@ -1,6 +1,5 @@
 """lyceum URL Configuration"""
 
-from os import abort
 from django.contrib import admin
 from django.urls import path, include
 

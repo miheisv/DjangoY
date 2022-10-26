@@ -29,8 +29,6 @@ jobs:
     - name: Lint with flake8
       run: |
         flake8 . --count --show-source --statistics
-        - name: Run Tests
     - name: Run Tests
       run: |
-        cd lyceum
-        python manage.py test
+        python lyceum/manage.py test lyceum

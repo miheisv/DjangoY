@@ -1,4 +1,56 @@
+from pickle import TRUE
+from pydoc import describe
+from unicodedata import category
+from xml.dom import ValidationErr
 from django.test import TestCase, Client
+
+from .models import Category, Item, Tag
+
+class ModelsTests(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.category = Category.objects.create(
+            is_published=True,
+            name='Тестовая категория',
+            slug='test-category-slug',
+            weight=150
+        )
+        cls.tag = Tag.objects.create(
+            is_published=True,
+            category='Тестовый тег',
+            slug='test-tag-slug'
+            )
+
+    def test_unable_create_one_letter(self):
+        item_count = Item.objects.count()
+
+        with self.assertRaises(ValidationError):
+            self.item = Item(
+                name='Тестовый товар',
+                category=self.category,
+                description='test desription lol'
+                )
+            self.item.full_clean()
+            self.item.save()
+            self.item.tags.add(self.tag)
+        
+        self.assertEqual(Item.objects.count(), item_count)
+
+    def test_unable_create_one_letter(self):
+        item_count = Item.objects.count()
+
+        with self.assertRaises(ValidationError):
+            self.item = Item(
+                name='Тестовый товар',
+                category=self.category,
+                description='test превосходно'
+                )
+            self.item.full_clean()
+            self.item.save()
+            self.item.tags.add(self.tag)
+                
+        self.assertEqual(Item.objects.count(), item_count + 1)
 
 
 class StaticURLTests(TestCase):

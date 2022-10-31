@@ -2,7 +2,8 @@ from wsgiref.validate import validator
 from django.test import TestCase, Client
 from django.core.exceptions import ValidationError
 
-from .models import Category, Item, Tag
+from catalog.models import Category, Item, Tag
+from catalog import validators
 
 
 class ModelsTests(TestCase):

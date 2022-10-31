@@ -1,10 +1,7 @@
-from pickle import TRUE
-from pydoc import describe
-from unicodedata import category
-from xml.dom import ValidationErr
 from django.test import TestCase, Client
 
 from .models import Category, Item, Tag
+
 
 class ModelsTests(TestCase):
     @classmethod

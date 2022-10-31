@@ -13,7 +13,7 @@ class SlugMixInModel(models.Model):
         abstract = True
     slug = models.CharField(
         max_length=200,
-        unique=True, 
+        unique=True,
         validators=[validate_slug]
         )
 

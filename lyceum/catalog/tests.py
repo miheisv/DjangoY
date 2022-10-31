@@ -27,7 +27,7 @@ class ModelsTests(TestCase):
             self.item = Item(
                 name='Тестовый товар',
                 category=self.category,
-                description='test desription lol'
+                text='test desription lol'
             )
             self.item.full_clean()
             self.item.save()
@@ -42,7 +42,7 @@ class ModelsTests(TestCase):
             self.item = Item(
                 name='Тестовый товар',
                 category=self.category,
-                description='test превосходно'
+                text='test превосходно'
             )
             self.item.full_clean()
             self.item.save()

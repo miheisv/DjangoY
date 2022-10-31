@@ -1,4 +1,3 @@
-from unicodedata import category
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -32,6 +31,7 @@ class Item(NameMixInModel, PublishedMixInModel):
         on_delete=models.CASCADE,
     )
     tags = models.ManyToManyField(Tag)
+
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'

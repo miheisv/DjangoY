@@ -1,4 +1,5 @@
 from django.test import TestCase, Client
+from django.core.exceptions import ValidationError
 
 from .models import Category, Item, Tag
 

@@ -9,26 +9,26 @@ class ModelsTests(TestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.category = Category.objects.create(
-                                                is_published=True,
-                                                name='Тестовая категория',
-                                                slug='test-category-slug',
-                                                weight=150
-                                            )
+            is_published=True,
+            name='Тестовая категория',
+            slug='test-category-slug',
+            weight=150
+        )
         cls.tag = Tag.objects.create(
-                                    is_published=True,
-                                    category='Тестовый тег',
-                                    slug='test-tag-slug'
-                                )
+            is_published=True,
+            category='Тестовый тег',
+            slug='test-tag-slug'
+        )
 
     def test_unable_create_one_letter(self):
         item_count = Item.objects.count()
 
         with self.assertRaises(ValidationError):
             self.item = Item(
-                            name='Тестовый товар',
-                            category=self.category,
-                            description='test desription lol'
-                        )
+                name='Тестовый товар',
+                category=self.category,
+                description='test desription lol'
+            )
             self.item.full_clean()
             self.item.save()
             self.item.tags.add(self.tag)
@@ -40,10 +40,10 @@ class ModelsTests(TestCase):
 
         with self.assertRaises(ValidationError):
             self.item = Item(
-                            name='Тестовый товар',
-                            category=self.category,
-                            description='test превосходно'
-                        )
+                name='Тестовый товар',
+                category=self.category,
+                description='test превосходно'
+            )
             self.item.full_clean()
             self.item.save()
             self.item.tags.add(self.tag)

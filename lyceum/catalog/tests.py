@@ -13,12 +13,12 @@ class ModelsTests(TestCase):
                                                 name='Тестовая категория',
                                                 slug='test-category-slug',
                                                 weight=150
-                                                )
+                                            )
         cls.tag = Tag.objects.create(
                                     is_published=True,
                                     category='Тестовый тег',
                                     slug='test-tag-slug'
-                                    )
+                                )
 
     def test_unable_create_one_letter(self):
         item_count = Item.objects.count()
@@ -28,7 +28,7 @@ class ModelsTests(TestCase):
                             name='Тестовый товар',
                             category=self.category,
                             description='test desription lol'
-                            )
+                        )
             self.item.full_clean()
             self.item.save()
             self.item.tags.add(self.tag)
@@ -43,7 +43,7 @@ class ModelsTests(TestCase):
                             name='Тестовый товар',
                             category=self.category,
                             description='test превосходно'
-                            )
+                        )
             self.item.full_clean()
             self.item.save()
             self.item.tags.add(self.tag)

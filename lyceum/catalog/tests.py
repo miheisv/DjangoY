@@ -60,7 +60,7 @@ class ModelsTests(TestCase):
             self.category.full_clean()
             self.category.save()
 
-        self.assertEqual(Item.objects.count(), category_count)
+        self.assertEqual(Category.objects.count(), category_count)
 
     def test_unable_create_one_category_big_weight(self):
         category_count = Category.objects.count()
@@ -75,7 +75,7 @@ class ModelsTests(TestCase):
             self.category.full_clean()
             self.category.save()
 
-        self.assertEqual(Item.objects.count(), category_count)
+        self.assertEqual(Category.objects.count(), category_count)
 
     def test_able_create_one_category(self):
         category_count = Category.objects.count()
@@ -87,7 +87,7 @@ class ModelsTests(TestCase):
         )
         self.category.full_clean()
         self.category.save()
-        self.assertEqual(Item.objects.count(), category_count + 1)
+        self.assertEqual(Category.objects.count(), category_count + 1)
 
 
 class StaticURLTests(TestCase):

@@ -38,7 +38,7 @@ class ModelsTests(TestCase):
     def test_able_create_one_letter(self):
         item_count = Item.objects.count()
 
-        with self.assertRaises(self):
+        with self.assertRaises(ValidationError):
             self.item = Item(
                 name='Тестовый товар',
                 category=self.category,

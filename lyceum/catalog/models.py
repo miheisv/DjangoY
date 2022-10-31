@@ -27,9 +27,9 @@ class Tag(NameMixInModel, SlugMixInModel, PublishedMixInModel):
 class Item(NameMixInModel, PublishedMixInModel):
     text = models.TextField(validators=[validators.validate_item_need])
     category = models.ForeignKey(
-                                Category,
-                                on_delete=models.CASCADE,
-                                )
+        Category,
+        on_delete=models.CASCADE,
+    )
     tags = models.ManyToManyField(Tag)
 
     class Meta:

@@ -54,6 +54,9 @@ class SecondModelsTests(TestCase):
 
         with self.assertRaises(ValidationError):
             self.category = Category.objects.create(
+                is_published=True,
+                name='Тестовая категория1',
+                slug='test-category-slug1',
                 weight=-100
             )
             self.category.full_clean()
@@ -66,6 +69,9 @@ class SecondModelsTests(TestCase):
 
         with self.assertRaises(ValidationError):
             self.category = Category.objects.create(
+                is_published=True,
+                name='Тестовая категория2',
+                slug='test-category-slug2',
                 weight=40000
             )
             self.category.full_clean()
@@ -76,6 +82,9 @@ class SecondModelsTests(TestCase):
     def test_able_create_one_category(self):
         category_count = Category.objects.count()
         self.category = Category.objects.create(
+            is_published=True,
+            name='Тестовая категория3',
+            slug='test-category-slug3',
             weight=100
         )
         self.category.full_clean()

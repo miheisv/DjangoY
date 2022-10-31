@@ -1,8 +1,7 @@
 from django.test import TestCase, Client
 from django.core.exceptions import ValidationError
 
-from catalog.models import Category, Item, Tag
-from catalog import validators
+from .models import Category, Item, Tag
 
 
 class ModelsTests(TestCase):
@@ -56,8 +55,7 @@ class ModelsTests(TestCase):
                 is_published=True,
                 name='Тестовая категория',
                 slug='test-category-slug-1',
-                weight=-100,
-                validators=[validators.validate_weight_range]
+                weight=-100
             )
             self.category.full_clean()
             self.category.save()
@@ -72,8 +70,7 @@ class ModelsTests(TestCase):
                 is_published=True,
                 name='Тестовая категория',
                 slug='test-category-slug-2',
-                weight=40000,
-                validators=[validators.validate_weight_range]
+                weight=40000
             )
             self.category.full_clean()
             self.category.save()

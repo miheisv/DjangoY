@@ -1,4 +1,3 @@
-from wsgiref.validate import validator
 from django.test import TestCase, Client
 from django.core.exceptions import ValidationError
 

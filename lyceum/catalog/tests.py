@@ -47,7 +47,7 @@ class ModelsTests(TestCase):
             self.item.full_clean()
             self.item.save()
             self.item.tags.add(self.tag)
-    
+
         self.assertEqual(Item.objects.count(), item_count + 1)
 
 

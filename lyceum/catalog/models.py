@@ -10,7 +10,7 @@ User = get_user_model
 
 class Category(NameMixInModel, SlugMixInModel, PublishedMixInModel):
     weight = models.IntegerField(
-        default=100, 
+        default=100,
         validators=[validators.validate_weight_range])
 
     class Meta:

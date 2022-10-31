@@ -32,7 +32,7 @@ class ModelsTests(TestCase):
             self.item.full_clean()
             self.item.save()
             self.item.tags.add(self.tag)
-        
+
         self.assertEqual(Item.objects.count(), item_count)
 
     def test_unable_create_one_letter(self):
@@ -47,7 +47,7 @@ class ModelsTests(TestCase):
             self.item.full_clean()
             self.item.save()
             self.item.tags.add(self.tag)
-                
+    
         self.assertEqual(Item.objects.count(), item_count + 1)
 
 

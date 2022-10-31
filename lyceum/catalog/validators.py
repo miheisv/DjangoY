@@ -16,7 +16,7 @@ def validate_item_need(value):
 def validate_weight_range(value):
     begin = 0
     end = 32767
-    if not begin < value < end:
+    if not (begin < value < end):
         raise ValidationError(f'Weight от {begin} до {end}!')
 
     return value

@@ -70,7 +70,7 @@ class ModelsTests(TestCase):
                 is_published=True,
                 name='Тестовая категория',
                 slug='test-category-slug-2',
-                weight=32768
+                weight=40000
             )
             self.category.full_clean()
             self.category.save()

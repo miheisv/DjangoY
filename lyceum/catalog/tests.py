@@ -35,7 +35,7 @@ class ModelsTests(TestCase):
 
         self.assertEqual(Item.objects.count(), item_count)
 
-    def test_unable_create_one_letter(self):
+    def test_able_create_one_letter(self):
         item_count = Item.objects.count()
 
         with self.assertRaises(ValidationError):

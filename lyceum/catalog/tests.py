@@ -16,7 +16,7 @@ class ModelsTests(TestCase):
         )
         cls.tag = Tag.objects.create(
             is_published=True,
-            category='Тестовый тег',
+            name='Тестовый тег',
             slug='test-tag-slug'
         )
 

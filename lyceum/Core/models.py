@@ -1,20 +1,16 @@
-from enum import unique
-from pickle import TRUE
-from wsgiref.validate import validator
 from django.db import models
 from django.core.validators import validate_slug
+
 
 class NameMixInModel(models.Model):
     class Meta:
         abstract = True
-    
     name = models.CharField(max_length=150, default='standartname')
 
 
 class SlugMixInModel(models.Model):
     class Meta:
         abstract = True
-    
     slug = models.CharField(
         max_length=200,
         unique=True, 
@@ -25,5 +21,4 @@ class SlugMixInModel(models.Model):
 class PublishedMixInModel(models.Model):
     class Meta:
         abstract = True
-    
     is_published = models.BooleanField(default=True)

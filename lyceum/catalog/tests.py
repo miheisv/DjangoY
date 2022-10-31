@@ -37,17 +37,14 @@ class ModelsTests(TestCase):
 
     def test_able_create_one_letter(self):
         item_count = Item.objects.count()
-
-        with self.assertTrue(ValidationError):
-            self.item = Item(
-                name='Тестовый товар',
-                category=self.category,
-                text='test превосходно'
-            )
-            self.item.full_clean()
-            self.item.save()
-            self.item.tags.add(self.tag)
-
+        self.item = Item(
+            name='Тестовый товар',
+            category=self.category,
+            text='test превосходно'
+        )
+        self.item.full_clean()
+        self.item.save()
+        self.item.tags.add(self.tag)
         self.assertEqual(Item.objects.count(), item_count + 1)
 
 

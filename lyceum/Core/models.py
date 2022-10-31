@@ -15,7 +15,7 @@ class SlugMixInModel(models.Model):
                             max_length=200,
                             unique=True,
                             validators=[validate_slug]
-                            )
+                        )
 
 
 class PublishedMixInModel(models.Model):

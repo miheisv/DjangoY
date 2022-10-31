@@ -47,7 +47,7 @@ class ModelsTests(TestCase):
         self.item.tags.add(self.tag)
         self.assertEqual(Item.objects.count(), item_count + 1)
     
-    def test_unable_create_one_category_negative_weight():
+    def test_unable_create_one_category_negative_weight(self):
         category_count = Category.objects.count()
 
         with self.assertRaises(ValidationError):
@@ -62,7 +62,7 @@ class ModelsTests(TestCase):
 
         self.assertEqual(Item.objects.count(), category_count)
 
-    def test_unable_create_one_category_big_weight():
+    def test_unable_create_one_category_big_weight(self):
         category_count = Category.objects.count()
 
         with self.assertRaises(ValidationError):
@@ -77,7 +77,7 @@ class ModelsTests(TestCase):
 
         self.assertEqual(Item.objects.count(), category_count)
 
-    def test_able_create_one_category():
+    def test_able_create_one_category(self):
         category_count = Category.objects.count()
         self.category = Category.objects.create(
             is_published=True,

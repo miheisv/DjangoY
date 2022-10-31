@@ -54,7 +54,7 @@ class ModelsTests(TestCase):
             self.category = Category.objects.create(
                 is_published=True,
                 name='Тестовая категория',
-                slug='test-category-slug',
+                slug='test-category-slug-1',
                 weight=-100
             )
             self.category.full_clean()
@@ -69,7 +69,7 @@ class ModelsTests(TestCase):
             self.category = Category.objects.create(
                 is_published=True,
                 name='Тестовая категория',
-                slug='test-category-slug',
+                slug='test-category-slug-2',
                 weight=32768
             )
             self.category.full_clean()
@@ -82,7 +82,7 @@ class ModelsTests(TestCase):
         self.category = Category.objects.create(
             is_published=True,
             name='Тестовая категория',
-            slug='test-category-slug',
+            slug='test-category-slug-3',
             weight=100
         )
         self.category.full_clean()

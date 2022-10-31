@@ -1,6 +1,7 @@
 from django.contrib import admin
 from catalog.models import Item, Category, Tag
 
+
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_published')

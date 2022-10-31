@@ -19,11 +19,13 @@ class SlugMixInModel(models.Model):
         help_text='уникальное значение до 200'
         ' символов(только латинца, цифры, _ и -)'
     )
+
     class Meta:
         abstract = True
 
 
 class PublishedMixInModel(models.Model):
-    is_published = models.BooleanField('Опубликовано',default=True)
+    is_published = models.BooleanField('Опубликовано', default=True)
+
     class Meta:
         abstract = True

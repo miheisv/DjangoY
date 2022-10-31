@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from .models import Category, Item, Tag
 
 
-class ModelsTests(TestCase):
+class FirstModelsTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -47,6 +47,8 @@ class ModelsTests(TestCase):
         self.item.tags.add(self.tag)
         self.assertEqual(Item.objects.count(), item_count + 1)
 
+
+class SecondModelsTests(TestCase):
     def test_unable_create_one_category_negative_weight(self):
         category_count = Category.objects.count()
 

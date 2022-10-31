@@ -10,6 +10,6 @@ class ItemAdmin(admin.ModelAdmin):
 
     filter_horizontal = ('tags',)
 
-# admin.site.register(Item)
+
 admin.site.register(Category)
 admin.site.register(Tag)

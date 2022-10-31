@@ -46,6 +46,48 @@ class ModelsTests(TestCase):
         self.item.save()
         self.item.tags.add(self.tag)
         self.assertEqual(Item.objects.count(), item_count + 1)
+    
+    def test_unable_create_one_category_negative_weight():
+        category_count = Category.objects.count()
+
+        with self.assertRaises(ValidationError):
+            self.category = Category.objects.create(
+                is_published=True,
+                name='Тестовая категория',
+                slug='test-category-slug',
+                weight=-100
+            )
+            self.category.full_clean()
+            self.category.save()
+
+        self.assertEqual(Item.objects.count(), category_count)
+
+    def test_unable_create_one_category_big_weight():
+        category_count = Category.objects.count()
+
+        with self.assertRaises(ValidationError):
+            self.category = Category.objects.create(
+                is_published=True,
+                name='Тестовая категория',
+                slug='test-category-slug',
+                weight=32768
+            )
+            self.category.full_clean()
+            self.category.save()
+
+        self.assertEqual(Item.objects.count(), category_count)
+
+    def test_able_create_one_category():
+        category_count = Category.objects.count()
+        self.category = Category.objects.create(
+            is_published=True,
+            name='Тестовая категория',
+            slug='test-category-slug',
+            weight=100
+        )
+        self.category.full_clean()
+        self.category.save()
+        self.assertEqual(Item.objects.count(), category_count + 1)
 
 
 class StaticURLTests(TestCase):

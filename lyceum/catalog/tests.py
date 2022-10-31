@@ -1,3 +1,4 @@
+from wsgiref.validate import validator
 from django.test import TestCase, Client
 from django.core.exceptions import ValidationError
 
@@ -55,7 +56,8 @@ class ModelsTests(TestCase):
                 is_published=True,
                 name='Тестовая категория',
                 slug='test-category-slug-1',
-                weight=-100
+                weight=-100,
+                validators=[validators.validate_weight_range]
             )
             self.category.full_clean()
             self.category.save()
@@ -70,7 +72,8 @@ class ModelsTests(TestCase):
                 is_published=True,
                 name='Тестовая категория',
                 slug='test-category-slug-2',
-                weight=40000
+                weight=40000,
+                validators=[validators.validate_weight_range]
             )
             self.category.full_clean()
             self.category.save()

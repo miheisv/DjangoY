@@ -1,11 +1,8 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 
 from Core.models import NameMixInModel, SlugMixInModel
 from Core.models import PublishedMixInModel
 from catalog import validators
-
-User = get_user_model
 
 
 class Category(NameMixInModel, SlugMixInModel, PublishedMixInModel):

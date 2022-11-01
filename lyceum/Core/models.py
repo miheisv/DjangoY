@@ -1,4 +1,3 @@
-from wsgiref.validate import validator
 from django.db import models
 from catalog.validators import validate_regex
 

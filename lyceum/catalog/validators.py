@@ -24,7 +24,7 @@ def validate_weight_range(value):
 
 
 def validate_regex(value):
-    if not re.fullmatch("^[a-zA-Z-_\d]*$", value):
-        raise ValidationError(f'Запись должна содержать только буквы латинцы, цифры, - и _')
+    if not re.fullmatch(r"^[a-zA-Z-_\d]*$", value):
+        raise ValidationError('Запись должна содержать только буквы латинцы, цифры, - и _')
 
     return value

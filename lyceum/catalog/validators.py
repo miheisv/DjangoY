@@ -10,7 +10,7 @@ def validate_item_need(*need_be_in):
         difference = set(need_be_in) - cleaned_value
         if len(difference) == len(need_be_in):
             raise ValidationError('Обязательно используйте слова: '
-            f'{", ".join(need_be_in)}!')
+                f'{", ".join(need_be_in)}!')
         return value
     return validator
 

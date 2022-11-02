@@ -43,7 +43,7 @@ class Item(PublishedMixInModel, NameMixInModel):
         help_text='Выберите не менее одного тега товара'
     )
     text = models.TextField(
-        validators=[validators.validate_item_need],
+        validators=[validators.validate_item_need('превосходно', 'роскошно')],
         verbose_name='Описание товара',
         help_text='Введите описание товара, состоящее не '
         'менее чем из двух слов, содержающее "превосходно" или "роскошно"')

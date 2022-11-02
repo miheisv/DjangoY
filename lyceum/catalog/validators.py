@@ -1,17 +1,18 @@
 from django.core.exceptions import ValidationError
 import re
+from functools import wraps
 
 
-def validate_item_need(value):
-    need_be_in = {'превосходно', 'роскошно', }
-    cleaned_value = set(value.lower().split())
-
-    difference = need_be_in - cleaned_value
-
-    if len(difference) == len(need_be_in):
-        raise ValidationError(f'Обязательно используйте слова {need_be_in}!')
-
-    return value
+def validate_item_need(*need_be_in):
+    @wraps(need_be_in)
+    def validator(value):
+        cleaned_value = set(value.lower().split())
+        difference = set(need_be_in) - cleaned_value
+        if len(difference) == len(need_be_in):
+            raise ValidationError('Обязательно используйте слова: '
+            f'{", ".join(need_be_in)}!')
+        return value
+    return validator
 
 
 def validate_weight_range(value):

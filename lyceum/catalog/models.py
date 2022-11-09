@@ -2,6 +2,10 @@ from django.db import models
 from django.utils.safestring import mark_safe
 from sorl.thumbnail import get_thumbnail, delete
 from django_cleanup.signals import cleanup_pre_delete
+from django import forms
+from tinymce.widgets import TinyMCE
+from tinymce import models as tinymce_models
+
 
 from Core.models import NameMixInModel, SlugMixInModel
 from Core.models import PublishedMixInModel
@@ -45,11 +49,12 @@ class Item(PublishedMixInModel, NameMixInModel):
         verbose_name='Теги',
         help_text='Выберите не менее одного тега товара'
     )
-    text = models.TextField(
+    text = tinymce_models.HTMLField(
         validators=[validators.validate_item_need('превосходно', 'роскошно')],
         verbose_name='Описание товара',
         help_text='Введите описание товара, состоящее не '
-        'менее чем из двух слов, содержающее "превосходно" или "роскошно"')
+        'менее чем из двух слов, содержающее "превосходно" или "роскошно"'
+    )
 
     def __str__(self):
         return self.name

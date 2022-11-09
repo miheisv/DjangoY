@@ -5,6 +5,6 @@
         <li class="nav-item"><a href="{% url "catalog:item_list" %}" class="nav-link px-2 text-muted">Список товаров</a></li>
         <li class="nav-item"><a href="{% url "about:description" %}" class="nav-link px-2 text-muted">О нас</a></li>
       </ul>
-      <p class="text-center text-muted">© 2021 Company, Inc</p>
+      <p class="text-center text-muted">© {% now 'Y' %} Company, Inc</p>
     </footer>
   </div>

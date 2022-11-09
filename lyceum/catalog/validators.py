@@ -1,20 +1,23 @@
 from django.core.exceptions import ValidationError
 import re
-from functools import wraps
+from django.utils.deconstruct import deconstructible
 
 
-def validate_item_need(*need_be_in):
-    @wraps(need_be_in)
-    def validator(value):
+@deconstructible
+class validate_item_need():
+    def __init__(self, *need_be_in):
+        self.need_be_in = need_be_in
+
+    def __call__(self, value):
         cleaned_value = set(value.lower().split())
-        difference = set(need_be_in) - cleaned_value
-        if len(difference) == len(need_be_in):
+        difference = set(self.need_be_in) - cleaned_value
+        if len(difference) == len(self.need_be_in):
             raise ValidationError(
                 'Обязательно используйте слова: '
-                f'{", ".join(need_be_in)}!'
+                f'{", ".join(self.need_be_in)}!'
             )
+
         return value
-    return validator
 
 
 def validate_weight_range(value):

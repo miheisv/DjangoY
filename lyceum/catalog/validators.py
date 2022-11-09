@@ -10,8 +10,8 @@ class validate_item_need():
         self.need_be_in = need_be_in
 
     def __call__(self, value):
-        cleaned_value = set(BeautifulSoup(value.lower(), features="html.parser").find_all(text=True))
-        difference = set(self.need_be_in) - cleaned_value
+        cleaned_value = BeautifulSoup(value.lower(), features="html.parser").find_all(text=True)
+        difference = set(self.need_be_in) - set(str(cleaned_value)[2:-2].split())
         if len(difference) == len(self.need_be_in):
             raise ValidationError(
                 'Обязательно используйте слова: '

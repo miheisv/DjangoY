@@ -1,6 +1,6 @@
+{% load static %}
 <!doctype html>
 <html lang="ru">
-    {% load static %}
     {% include "main/head.html" %}
     <body>
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -46,4 +46,5 @@
 {% block content %}
 <img src="{% static "fallpage.png" %}" class="rounded mx-auto d-block" alt="...">
 {% endblock %}
+{% include "main/footer.html" %}
 </html>

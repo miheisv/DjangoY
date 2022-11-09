@@ -32,7 +32,6 @@ class Tag(NameMixInModel, SlugMixInModel, PublishedMixInModel):
         verbose_name_plural = 'Теги'
 
 
-
 class Item(PublishedMixInModel, NameMixInModel):
     category = models.ForeignKey(
         Category,
@@ -51,7 +50,7 @@ class Item(PublishedMixInModel, NameMixInModel):
         verbose_name='Описание товара',
         help_text='Введите описание товара, состоящее не '
         'менее чем из двух слов, содержающее "превосходно" или "роскошно"')
-    
+
     def __str__(self):
         return self.name
 
@@ -77,14 +76,14 @@ class Preview(models.Model):
     @property
     def get_img(self):
         return get_thumbnail(self.upload, '300x300', crop='center', quality=51)
-    
+
     def image_tmb(self):
         if self.upload:
             return mark_safe(
                 f'<img src="{self.get_img.url}">'
             )
         return 'Изображение отсутствует'
-    
+
     image_tmb.short_description = 'Превью'
     image_tmb.allow_tags = True
 
@@ -103,7 +102,7 @@ class Preview(models.Model):
 
 class PhotoGallery(models.Model):
     upload = models.ImageField(
-        upload_to=f'uploads/gallery/%Y/%m',
+        upload_to='uploads/gallery/%Y/%m',
         verbose_name='Изображение товара',
         help_text='Загрузите изображение товара'
     )
@@ -117,20 +116,19 @@ class PhotoGallery(models.Model):
     @property
     def get_img(self):
         return get_thumbnail(self.upload, '300x300', crop='center', quality=51)
-    
+
     def image_tmb(self):
         if self.upload:
             return mark_safe(
                 f'<img src="{self.get_img.url}">'
             )
         return 'Изображение отсутствует'
-    
+
     image_tmb.short_description = 'Галлерея'
     image_tmb.allow_tags = True
 
     def sorl_delete(**kwargs):
         delete(kwargs['file'])
-
 
     cleanup_pre_delete.connect(sorl_delete)
 

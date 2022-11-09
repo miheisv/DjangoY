@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 import re
 from django.utils.deconstruct import deconstructible
+from bs4 import BeautifulSoup
 
 
 @deconstructible
@@ -9,7 +10,7 @@ class validate_item_need():
         self.need_be_in = need_be_in
 
     def __call__(self, value):
-        cleaned_value = set(value.lower().split())
+        cleaned_value = set(BeautifulSoup(value.lower(), features="html.parser").find_all(text=True))
         difference = set(self.need_be_in) - cleaned_value
         if len(difference) == len(self.need_be_in):
             raise ValidationError(

@@ -96,7 +96,7 @@ class Preview(models.Model):
     cleanup_pre_delete.connect(sorl_delete)
 
     def __str__(self):
-        return self.image_tmb()
+        return self.upload.url
 
     class Meta:
         verbose_name = 'Превью'
@@ -109,7 +109,7 @@ class PhotoGallery(models.Model):
         verbose_name='Изображение товара',
         help_text='Загрузите изображение товара'
     )
-    gallery = models.ForeignKey(
+    item = models.ForeignKey(
         Item,
         verbose_name='Товар',
         on_delete=models.CASCADE,
@@ -136,7 +136,7 @@ class PhotoGallery(models.Model):
     cleanup_pre_delete.connect(sorl_delete)
 
     def __str__(self):
-        return self.image_tmb()
+        return self.upload.url
 
     class Meta:
         verbose_name = 'Галлерея'

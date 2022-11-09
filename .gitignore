@@ -4,4 +4,6 @@ venv
 .idea
 __pychahce__
 .env
+media/
+media
 db.sqlite3

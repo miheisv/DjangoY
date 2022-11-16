@@ -1,4 +1,5 @@
 from django.test import TestCase, Client
+from django.urls import reverse
 from django.core.exceptions import ValidationError
 
 from .models import Category, Item, Tag
@@ -128,3 +129,10 @@ class StaticURLTests(TestCase):
     def test_homepage_detail_dot(self):
         response = Client().get(path='/catalog/1.2/')
         self.assertEqual(response.status_code, 404)
+
+
+class PageContextTests(TestCase):
+    def test_homepage_show_correct_context(self):
+        response = Client().get(reverse('homepage:home'))
+        self.assertIn('items', response.context)
+        self.assertEqual(len(response.context['items']), 0)

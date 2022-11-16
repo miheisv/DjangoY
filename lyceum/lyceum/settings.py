@@ -14,6 +14,10 @@ DEBUG = os.getenv("DEBUG") == 'True'
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", default="*")
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
 INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
     'Core.apps.CoreConfig',
@@ -21,6 +25,7 @@ INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
     'sorl.thumbnail',
     'tinymce',
+    'debug_toolbar',
     'django_cleanup.apps.CleanupConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -28,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -38,6 +44,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'lyceum.urls'

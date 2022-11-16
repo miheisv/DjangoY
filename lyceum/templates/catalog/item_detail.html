@@ -1,0 +1,26 @@
+{% extends "main/mainpage.html" %}
+
+{% block content %}
+    <div class="container  mx-auto" id="icon-grid">
+        <div class="d-flex justify-content-center">
+            <h1 class="bd-title" id="content">Побробно о товаре</h1>
+        </div>
+    </div>
+    <div class="container mx-auto" id="icon-grid">
+        <div class="row flex">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{forloop.counter}} Товар: {{item.name}}</h5>
+                        <p class="card-text">Категория: {{item.category.name|safe}}</p>
+                        <p class="card-text">Описание:{{item.text|safe}}</p>
+                        <img src="{{item.preview.get_img}}">
+                    </div>
+                <div class="card-footer">
+                <small class="text-muted">Тэги: {% for tag in item.tags.all %}{{tag.name|safe}}<br>{% endfor %}</small>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

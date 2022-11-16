@@ -34,7 +34,38 @@ class Tag(NameMixInModel, SlugMixInModel, PublishedMixInModel):
         verbose_name_plural = 'Теги'
 
 
+class ItemManger(models.Manager):
+    def published_home(self):
+        return (
+            self.get_queryset()
+                .filter(
+                    is_on_main=True,
+                    category__is_published=True
+                )
+                .select_related('category')
+                .order_by('name')
+                .prefetch_related(
+                    models.Prefetch('tags', queryset=Tag.objects.filter(is_published=True).only('name'))
+                )
+        )
+    def published_catalog(self):
+        return (
+                self.get_queryset()
+                .filter(
+                    is_on_main=True,
+                    category__is_published=True
+                )
+                .select_related('category')
+                .order_by('category')
+                .prefetch_related(
+                    models.Prefetch('tags', queryset=Tag.objects.filter(is_published=True).only('name'))
+                )
+        )
+
+
 class Item(PublishedMixInModel, NameMixInModel):
+    objects = ItemManger()
+
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
@@ -53,6 +84,11 @@ class Item(PublishedMixInModel, NameMixInModel):
         help_text='Введите описание товара, состоящее не '
         'менее чем из двух слов, содержающее "превосходно" или "роскошно"'
     )
+    is_on_main = models.BooleanField(default=False, verbose_name='Флаг')
+
+
+    def short_text(self):
+        return ' '.join(self.text.split()[:10])
 
     def __str__(self):
         return self.name

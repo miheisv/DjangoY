@@ -37,16 +37,16 @@ class Tag(NameMixInModel, SlugMixInModel, PublishedMixInModel):
 class ItemManger(models.Manager):
     def published_home(self):
         return (
-            self.get_queryset()
-            .filter(
-                is_on_main=True,
-                category__is_published=True
-            )
-            .select_related('category')
-            .order_by('name')
-            .prefetch_related(
-                models.Prefetch('tags', queryset=Tag.objects.filter(is_published=True).only('name'))
-            )
+                self.get_queryset()
+                .filter(
+                    is_on_main=True,
+                    category__is_published=True
+                )
+                .select_related('category')
+                .order_by('name')
+                .prefetch_related(
+                    models.Prefetch('tags', queryset=Tag.objects.filter(is_published=True).only('name'))
+                )
         )
 
     def published_catalog(self):
@@ -86,7 +86,6 @@ class Item(PublishedMixInModel, NameMixInModel):
         'менее чем из двух слов, содержающее "превосходно" или "роскошно"'
     )
     is_on_main = models.BooleanField(default=False, verbose_name='Флаг')
-
 
     def short_text(self):
         return ' '.join(self.text.split()[:10])

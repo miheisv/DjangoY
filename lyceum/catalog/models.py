@@ -86,7 +86,6 @@ class Item(PublishedMixInModel, NameMixInModel):
         'менее чем из двух слов, содержающее "превосходно" или "роскошно"'
     )
     is_on_main = models.BooleanField(default=False, verbose_name='Флаг')
-
     def short_text(self):
         return ' '.join(self.text.split()[:10])
 

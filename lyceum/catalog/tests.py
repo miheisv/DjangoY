@@ -116,7 +116,6 @@ class StaticURLTests(TestCase):
 
     # item_detail 'catalog/123' test
     def test_homepage_detail_num(self):
-        item_count = Item.objects.count()
         self.item = Item(
             name='Тестовый товар',
             category=self.category,
@@ -125,7 +124,7 @@ class StaticURLTests(TestCase):
         self.item.full_clean()
         self.item.save()
         self.item.tags.add(self.tag)
-        response = Client().get(reverse('catalog:item_detail', kwargs={'pk':self.item.pk,}))
+        response = Client().get(reverse('catalog:item_detail', kwargs={'pk': self.item.pk, }))
         self.assertEqual(response.status_code, 200)
 
     # zero test

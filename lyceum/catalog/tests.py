@@ -94,6 +94,20 @@ class SecondModelsTests(TestCase):
 
 
 class StaticURLTests(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.category = Category.objects.create(
+            is_published=True,
+            name='Тестовая категория',
+            slug='test-category-slug',
+            weight=150
+        )
+        cls.tag = Tag.objects.create(
+            is_published=True,
+            name='Тестовый тег',
+            slug='test-tag-slug'
+        )
 
     # item_list 'catalog/' test
     def test_catalog_detail(self):
@@ -102,7 +116,16 @@ class StaticURLTests(TestCase):
 
     # item_detail 'catalog/123' test
     def test_homepage_detail_num(self):
-        response = Client().get(path='/catalog/123/')
+        item_count = Item.objects.count()
+        self.item = Item(
+            name='Тестовый товар',
+            category=self.category,
+            text='test превосходно'
+        )
+        self.item.full_clean()
+        self.item.save()
+        self.item.tags.add(self.tag)
+        response = Client().get(reverse('catalog:item_detail', kwargs={'pk':self.item.pk,}))
         self.assertEqual(response.status_code, 200)
 
     # zero test

@@ -13,6 +13,7 @@
                     <div class="card-footer">
                         <small class="text-muted">Тэги: {% for tag in item.tags.all %}{{tag.name|safe}}<br>{% endfor %}</small>
                     </div>
+                    <a href="{% url "catalog:item_detail" item.pk %}" class="btn btn-primary">Подробно</a>
                 </div>
             </div>                    
             {% endfor %%}

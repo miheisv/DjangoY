@@ -47,6 +47,7 @@ class ItemManger(models.Manager):
             .prefetch_related(
                 models.Prefetch('tags', queryset=Tag.objects.filter(is_published=True).only('name'))
             )
+            .only('name', 'category', 'text', 'preview', 'tags')
         )
 
     def published_catalog(self):
@@ -61,6 +62,7 @@ class ItemManger(models.Manager):
             .prefetch_related(
                 models.Prefetch('tags', queryset=Tag.objects.filter(is_published=True).only('name'))
             )
+            .only('name', 'category', 'text', 'preview', 'tags')
         )
 
 

@@ -93,6 +93,39 @@ class SecondModelsTests(TestCase):
         self.assertEqual(Category.objects.count(), category_count + 1)
 
 
+class ThirdPagesTests(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.category = Category.objects.create(
+            is_published=True,
+            name='Тестовая категория',
+            slug='test-category-slug',
+            weight=150
+        )
+        cls.tag = Tag.objects.create(
+            is_published=True,
+            name='Тестовый тег',
+            slug='test-tag-slug'
+        )
+
+    def test_able_giving_to_homapage(self):
+        item_count = Item.objects.published_home().count()
+        self.item = Item(
+            name='Тестовый товар',
+            category=self.category,
+            text='test desription lol роскошно',
+            is_on_main = True
+        )
+        self.item.full_clean()
+        self.item.save()
+        self.item.tags.add(self.tag)
+
+        items = Item.objects.published_home()
+
+        self.assertEqual(items.count(), item_count + 1)
+
+
 class StaticURLTests(TestCase):
     @classmethod
     def setUpClass(cls):

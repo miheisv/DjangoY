@@ -10,7 +10,6 @@ from Core.models import PublishedMixInModel
 from catalog import validators
 
 
-
 class ItemManger(models.Manager):
     def published_home(self):
         return (
@@ -26,7 +25,7 @@ class ItemManger(models.Manager):
             )
             .only('name', 'category', 'text', 'preview', 'tags')
         )
-    
+
     def published_catalog(self):
         return (
             self.get_queryset()

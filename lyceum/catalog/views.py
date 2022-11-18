@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from catalog.models import Item
+from catalog.models import Item, Category
 from django.shortcuts import get_object_or_404
 
 

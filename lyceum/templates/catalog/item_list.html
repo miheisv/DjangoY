@@ -6,6 +6,34 @@
             <h1 class="bd-title" id="content">Список товаров</h1>
         </div>
     </div>
-    {% include "main/items.html" %}
+    <div class="container mx-auto" id="icon-grid">
+        {% for item in items %}
+            {% ifchanged  %}
+                <div class="container  mx-auto" id="icon-grid">
+                    <div class="d-flex justify-content-left">
+                        <h2 class="bd-title" id="content">{{item.category.name}}</h2>
+                    </div>
+                </div>
+            {% endifchanged %}
+            <div class="row flex">
+                <div class="card-group">
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{forloop.counter}} Товар: {{item.name}}</h5>
+                                <p class="card-text">Категория: {{item.category.name|safe}}</p>
+                                <p class="card-text">Описание:{{item.short_text|safe}}</p>
+                                <img src="{{item.preview.get_img}}">
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Тэги: {% for tag in item.tags.all %}{{tag.name|safe}}<br>{% endfor %}</small>
+                            </div>
+                            <a href="{% url "catalog:item_detail" item.pk %}" class="btn btn-primary">Подробно</a>
+                        </div>      
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

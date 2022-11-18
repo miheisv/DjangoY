@@ -10,7 +10,41 @@ from Core.models import PublishedMixInModel
 from catalog import validators
 
 
+
+class ItemManger(models.Manager):
+    def published_home(self):
+        return (
+            self.get_queryset()
+            .filter(
+                is_on_main=True,
+                category__is_published=True
+            )
+            .select_related('category')
+            .order_by('name')
+            .prefetch_related(
+                models.Prefetch('tags', queryset=Tag.objects.filter(is_published=True).only('name'))
+            )
+            .only('name', 'category', 'text', 'preview', 'tags')
+        )
+    
+    def published_catalog(self):
+        return (
+            self.get_queryset()
+            .filter(
+                is_on_main=True,
+                category__is_published=True
+            )
+            .select_related('category')
+            .order_by('category')
+            .prefetch_related(
+                models.Prefetch('tags', queryset=Tag.objects.filter(is_published=True).only('name'))
+            )
+            .only('name', 'category', 'text', 'preview', 'tags')
+        )
+
+
 class Category(NameMixInModel, SlugMixInModel, PublishedMixInModel):
+    objects = ItemManger()
     weight = models.IntegerField(
         default=100,
         verbose_name='Рейтинг товара',
@@ -32,38 +66,6 @@ class Tag(NameMixInModel, SlugMixInModel, PublishedMixInModel):
     class Meta:
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
-
-
-class ItemManger(models.Manager):
-    def published_home(self):
-        return (
-            self.get_queryset()
-            .filter(
-                is_on_main=True,
-                category__is_published=True
-            )
-            .select_related('category')
-            .order_by('name')
-            .prefetch_related(
-                models.Prefetch('tags', queryset=Tag.objects.filter(is_published=True).only('name'))
-            )
-            .only('name', 'category', 'text', 'preview', 'tags')
-        )
-
-    def published_catalog(self):
-        return (
-            self.get_queryset()
-            .filter(
-                is_on_main=True,
-                category__is_published=True
-            )
-            .select_related('category')
-            .order_by('category')
-            .prefetch_related(
-                models.Prefetch('tags', queryset=Tag.objects.filter(is_published=True).only('name'))
-            )
-            .only('name', 'category', 'text', 'preview', 'tags')
-        )
 
 
 class Item(PublishedMixInModel, NameMixInModel):

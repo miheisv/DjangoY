@@ -115,7 +115,7 @@ class ThirdPagesTests(TestCase):
             name='Тестовый товар',
             category=self.category,
             text='test desription lol роскошно',
-            is_on_main = True
+            is_on_main=True
         )
         self.item.full_clean()
         self.item.save()

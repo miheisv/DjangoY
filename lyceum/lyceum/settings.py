@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
     'Core.apps.CoreConfig',
     'about.apps.AboutConfig',
+    'feedback.apps.FeedbackConfig',
     'catalog.apps.CatalogConfig',
     'sorl.thumbnail',
     'tinymce',
@@ -129,3 +130,6 @@ TINYMCE_DEFAULT_CONFIG = {
     'paste_remove_styles_if_webkit': 'true',
     'paste_strip_class_attributes': 'all',
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = BASE_DIR / 'sent_emails'

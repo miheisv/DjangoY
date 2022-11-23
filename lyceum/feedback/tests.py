@@ -13,20 +13,20 @@ class BaseTestCase(TestCase):
         prefetched_keys,
         must_not_loaded_keys
     ):
-        if must_loaded_keys not None:
+        if must_loaded_keys is not None:
             for must_loaded_key in must_loaded_keys:
                 self.assertIn(must_loaded_key, object.__dict__)
-        if prefetched_keys not None:
+        if prefetched_keys is not None:
             for prefetched_key in prefetched_keys:
                 self.assertIn(prefetched_key, object.__dict__['_prefetched_objects_cache'])
-        if must_not_loaded_keys not None:
+        if must_not_loaded_keys is not None:
             for must_not_loaded_key in must_not_loaded_keys:
                 self.assertNotIn(must_not_loaded_key, object.__dict__)
 
 
 class TestCatalogPage(BaseTestCase):
     fiхtures = ['fixtures.json']
-    
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
-from django.utils.dateparse import parse_datetime
 import os
 from dotenv import load_dotenv
 
@@ -9,12 +8,13 @@ from feedback.models import FormFromFeedback, Feedback
 
 load_dotenv()
 
+
 def feedback(request):
     template_name = 'feedback/feedback.html'
     form = FormFromFeedback(request.POST or None)
     context = {
-            'form': form,
-        }
+        'form': form,
+    }
     if request.method == 'POST' and form.is_valid():
         feedback = Feedback.objects.create()
         text = form.cleaned_data['text']

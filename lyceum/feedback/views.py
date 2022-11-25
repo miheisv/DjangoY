@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 import os
 from dotenv import load_dotenv
-from django.shortcuts import get_object_or_404
 
 from feedback.forms import FormFromFeedback, Feedback
 

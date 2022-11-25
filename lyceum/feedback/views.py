@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 import os
 from dotenv import load_dotenv
+from django.shortcuts import get_object_or_404
 
-from feedback.models import FormFromFeedback, Feedback
+from feedback.forms import FormFromFeedback, Feedback
 
 
 load_dotenv()
@@ -15,18 +16,13 @@ def feedback(request):
     context = {
         'form': form,
     }
-    if request.method == 'POST' and form.is_valid():
-        feedback = Feedback.objects.create()
-        text = form.cleaned_data['text']
-        email = form.cleaned_data['email']
-        date = Feedback.created_on
-        feedback.text = text
-        feedback.email = email
+    if form.is_valid():
+        feedback = form.save(commit=False)
+        date = str(Feedback.created_on)
         feedback.save()
         send_mail(
-            'Привет, это твой отзыв',
-            f'Отзыв: {text},\n'
-            'Дата создания: ' + str(date),
+            'Привет, твой отзыв успешно отправлен',
+            date,
             os.getenv('ADMIN_EMAIL'),
             [feedback.email],
             fail_silently=False

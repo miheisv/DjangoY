@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 
 
-from feedback.models import FormFromFeedback, Feedback
+from feedback.forms import FormFromFeedback, Feedback
 
 
 class BaseTestCase(TestCase):
@@ -64,6 +64,7 @@ class TestCatalogPage(BaseTestCase):
 
     def test_redirect_feedback(self):
         feedback_count = Feedback.objects.count()
+
         form_data = {
             'text': 'Тест',
             'email': 'example@yandex.ru',

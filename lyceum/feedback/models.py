@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 
 
 class Feedback(models.Model):
@@ -16,6 +18,9 @@ class Feedback(models.Model):
         help_text='Дата создания фидбека',
         auto_now_add=True
     )
+    
+    tz = timezone.get_default_timezone()
+
 
     def __str__(self):
          return 'Заявка от {}'.format(self.created.astimezone(tz).strftime('%d.%m.%Y %H:%M'))

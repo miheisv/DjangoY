@@ -3,8 +3,7 @@ from django.core.mail import send_mail
 import os
 from dotenv import load_dotenv
 
-from feedback.forms import FormFromFeedback, Feedback
-
+from feedback.forms import FormFromFeedback
 
 load_dotenv()
 
@@ -17,13 +16,12 @@ def feedback(request):
     }
     if form.is_valid():
         feedback = form.save(commit=False)
-        date = str(Feedback.created_on)
-        feedback.save()
+        form.save()
         send_mail(
             'Привет, твой отзыв успешно отправлен',
-            date,
+            'Отзыв: ' + str(form.cleaned_data['text']),
             os.getenv('ADMIN_EMAIL'),
-            [feedback.email],
+            [form.cleaned_data['email']],
             fail_silently=False
         )
         return redirect('feedback:feedback')

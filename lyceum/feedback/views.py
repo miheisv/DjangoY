@@ -15,7 +15,6 @@ def feedback(request):
         'form': form,
     }
     if form.is_valid():
-        feedback = form.save(commit=False)
         form.save()
         send_mail(
             'Привет, твой отзыв успешно отправлен',

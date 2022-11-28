@@ -15,7 +15,8 @@ class Profile(models.Model):
 
 
 class Registration(models.Model):
-    login = models.CharField(max_length=40,
+    login = models.CharField(
+        max_length=40,
         default='',
         help_text='Введите логин'
     )

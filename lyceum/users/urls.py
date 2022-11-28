@@ -20,8 +20,8 @@ urlpatterns = [
     path(
         'password_change/',
         PasswordChangeView.as_view(
-        template_name='users/password_change.html',
-        success_url=reverse_lazy('users:password_change_done')
+            template_name='users/password_change.html',
+            success_url=reverse_lazy('users:password_change_done')
         ),
         name='password_change'
     ),

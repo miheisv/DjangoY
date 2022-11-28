@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
-import os
 from dotenv import load_dotenv
 from django.views import generic
 from django.views.generic.detail import DetailView
@@ -44,6 +43,7 @@ def user_profile(request, username):
     else:
         return render(request, 'homepage/homepage.html')
 
+
 def user_detail(request, username):
     template_name = 'users/user_detail.html'
     user = User.objects.get(username=username)
@@ -52,6 +52,7 @@ def user_detail(request, username):
     }
     return render(request, template_name, context)
 
+
 def user_list(request):
     template_name = 'users/user_list.html'
     users = User.objects.filter(is_active=True)
@@ -59,6 +60,7 @@ def user_list(request):
         'users': users,
     }
     return render(request, template_name, context)
+
 
 class ShowProfilePageView(DetailView):
     model = Profile

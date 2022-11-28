@@ -1,0 +1,49 @@
+{% extends "main/mainpage.html" %}
+{% block name %}
+    Форма
+{% endblock  %}
+{% block content %}
+    <div class="container mx-auto" id="icon-grid">
+        <div class="d-flex justify-content-center">
+            <form method="post">
+                {% csrf_token %}
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                {{ errors|escape }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ errors|escape }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% for field in form %}
+                    <div class="mb-3">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                                {{ field.label_tag }}
+                                {% if field.help_text %}
+                                    <span class="form-text">
+                                        {{ field.help_text }}
+                                    </span>
+                                {% endif %}
+                            </div>
+                            <div class="col-auto">
+                                {{ field }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">
+                {% block  button %}
+                Кнопка
+                {% endblock  %}
+                </button>
+            </form>
+        </div>
+    </div>    
+{% endblock %}

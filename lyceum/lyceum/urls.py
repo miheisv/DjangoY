@@ -10,6 +10,7 @@ urlpatterns = [
     path('catalog/', include('catalog.urls', namespace='catalog')),
     path('about/', include('about.urls', namespace='about')),
     path('admin/', admin.site.urls),
+    path('users/', include('users.urls', namespace='users')),
     path('feedback/', include('feedback.urls', namespace='feedback')),
     path('tinymce/', include('tinymce.urls')),
 ]

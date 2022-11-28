@@ -4,6 +4,15 @@
     {% include "main/head.html" %}
     <body>
       {% include "main/header.html" %}
+      <div class="container mx-auto" id="icon-grid">
+        <div class="d-flex justify-content-center">
+            <h1 class="bd-title" id="content">
+              {% block name %}
+              NAME
+              {% endblock  %}
+            </h1>
+        </div>
+    </div>
       {% block content %}
         <img src="{% static "fallpage.png" %}" class="rounded mx-auto d-block" alt="...">
       {% endblock %}

@@ -1,31 +1,28 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
-from django.utils.dateparse import parse_datetime
+import os
+from dotenv import load_dotenv
 
-from feedback.models import FormFromFeedback, Feedback
+from feedback.forms import FormFromFeedback
+
+load_dotenv()
+
 
 def feedback(request):
     template_name = 'feedback/feedback.html'
-    
     form = FormFromFeedback(request.POST or None)
-
     context = {
-            'form': form,
-        }
-
-    if request.method == 'POST' and form.is_valid():
-        feedback = Feedback.objects.create()
-        text = form.cleaned_data['text']
-        date = Feedback.created_on
-        feedback.text = text
-        feedback.save()
+        'form': form,
+    }
+    if form.is_valid():
+        form.save()
         send_mail(
-            f'Привет, {text}',
-            'Дата создания' + str(date),
-            'example@yandex.ru',
-            ['yandex@yandex.ru'],
+            'Привет, твой отзыв успешно отправлен',
+            'Отзыв: ' + str(form.cleaned_data['text']),
+            os.getenv('ADMIN_EMAIL'),
+            [form.cleaned_data['email']],
             fail_silently=False
         )
-        return redirect('homepage:home')#request.META.get('HTTP_REFERER'))
+        return redirect('feedback:feedback')
 
     return render(request, template_name, context)

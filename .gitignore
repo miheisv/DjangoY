@@ -7,3 +7,5 @@ __pychahce__
 media/
 media
 db.sqlite3
+sent_emails/
+sent_emails

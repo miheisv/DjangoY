@@ -14,6 +14,9 @@ DEBUG = os.getenv("DEBUG") == 'True'
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", default="*")
 
+LOGIN_URL = 'auth/login/'
+LOGIN_REDIRECT_URL = '/'
+
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
@@ -24,6 +27,7 @@ INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'feedback.apps.FeedbackConfig',
     'catalog.apps.CatalogConfig',
+    'users',
     'sorl.thumbnail',
     'tinymce',
     'debug_toolbar',

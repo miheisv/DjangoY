@@ -1,0 +1,23 @@
+{% extends "main/mainpage.html" %}
+{% block name %}
+    Список активных пользователей
+{% endblock  %}
+{% block content %}
+    <div class="container mx-auto" id="icon-grid">
+        {% for user in users %}
+            <div class="row flex">
+                <div class="card-group">
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Пользователь</h5>
+                                <p class="card-text">Login: {{user.username}}</p>
+                            </div>
+                            <a href="{% url "users:user_detail" user.username %}" class="btn btn-primary">Подробно</a>
+                        </div>      
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -10,10 +10,10 @@
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Пользователь</h5>
-                                <p class="card-text">Login: {{user.username}}</p>
+                                <h5 class="card-title">Пользователь {{user.first_name}}</h5>
+                                <p class="card-text">Email: {{user.email}}</p>
                             </div>
-                            <a href="{% url "users:user_detail" user.username %}" class="btn btn-primary">Подробно</a>
+                            <a href="{% url "users:user_detail" user.email %}" class="btn btn-primary">Подробно</a>
                         </div>      
                     </div>
                 </div>

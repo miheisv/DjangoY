@@ -1,29 +1,15 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.utils.translation import ugettext_lazy as _
+from .managers import CustomUserManager
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+class CustomUser(AbstractUser):
+    username = None
+    email = models.EmailField(_('email address'), unique=True)
     birth_day = models.DateField(verbose_name='День рождения', null=True, blank=True)
-
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+    objects = CustomUserManager()
     def __str__(self):
-        return 'Профиль'
-
-    class Meta:
-        verbose_name = 'Профиль'
-        verbose_name_plural = 'Профили'
-
-
-class Registration(models.Model):
-    login = models.CharField(
-        max_length=40,
-        default='',
-        help_text='Введите логин'
-    )
-
-    password = models.CharField(
-        default='',
-        verbose_name='Пароль',
-        help_text='Введите пароль',
-        max_length=64
-    )
+        return self.email  

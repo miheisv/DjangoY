@@ -27,10 +27,8 @@ INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'feedback.apps.FeedbackConfig',
     'catalog.apps.CatalogConfig',
-    'users',
-    'sorl.thumbnail',
-    'tinymce',
-    'debug_toolbar',
+    'users.apps.UsersConfig',
+    'debug_toolbar.apps.DebugToolbarConfig',
     'django_cleanup.apps.CleanupConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'sorl.thumbnail', 
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -107,6 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
         ),
     },
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 LANGUAGE_CODE = 'ru'
 

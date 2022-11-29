@@ -68,13 +68,13 @@ urlpatterns = [
         name='user_list'
     ),
     path(
-        'user_detail/<str:username>',
+        'user_detail/<str:email>',
         views.user_detail,
         name='user_detail'
     ),
     path(
-        'user_profile/<str:username>',
-        views.user_profile,
+        'user_profile/<str:email>',
+        views.ProfileView.as_view(),
         name='user_profile'
     ),
 ]

@@ -2,7 +2,7 @@
 
 {% block name %}
 {% if request.user.is_authenticated %}
-Профиль {{user.username}}
+Профиль {{user.first_name}} {{user.last_name}}
 {% else %}
 Свалил отсюда!
 {% endif %}
@@ -11,8 +11,7 @@
 {% if request.user.is_authenticated %}
 <form method="post">
   {% csrf_token %}
-  {{ form1.as_p }}
-  {{ form2.as_p}}
+  {{ form.as_p }}
   <button type="submit">Изменить</button>
 </form>
 {% else %}

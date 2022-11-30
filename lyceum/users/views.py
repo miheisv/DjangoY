@@ -16,8 +16,8 @@ class ProfileView(UpdateView):
     success_url = reverse_lazy('users:login')
     template_name = 'users/profile.html'
 
-    def get_object(self, queryset=None): 
-            return self.request.user
+    def get_object(self, queryset=None):
+        return self.request.user
 
     def form_valid(self, form):
         return super(ProfileView, self).form_valid(form)

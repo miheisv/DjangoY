@@ -31,8 +31,7 @@ def user_detail(request, email):
             'user': user,
         }
         return render(request, template_name, context)
-    else:
-        return redirect('homepage:home')
+    return redirect('homepage:home')
 
 
 def user_list(request):
@@ -43,5 +42,4 @@ def user_list(request):
             'users': users,
         }
         return render(request, template_name, context)
-    else:
-        return redirect('homepage:home')
+    return redirect('homepage:home')

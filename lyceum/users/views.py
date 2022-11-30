@@ -37,7 +37,7 @@ def user_detail(request, email):
 def user_list(request):
     if request.user.is_authenticated:
         template_name = 'users/user_list.html'
-        users = get_list_or_404(CustomUser.objects.filter(is_active=True))
+        users = get_list_or_404(CustomUser, is_active=True)
         context = {
             'users': users,
         }

@@ -1,5 +1,4 @@
-{% extends 'main/mainpage.html' %}
-
+{% extends 'main/form.html' %}
 {% block name %}
 {% if request.user.is_authenticated %}
 Профиль {{user.first_name}} {{user.last_name}}
@@ -7,17 +6,4 @@
 Свалил отсюда!
 {% endif %}
 {% endblock name %}}
-{% block content %}
-{% if request.user.is_authenticated %}
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Изменить</button>
-</form>
-{% else %}
-Кыш, кому говорят
-{% endif %}
-{% endblock content %}
-
-
-
+{% block button%}Изменить{% endblock %}

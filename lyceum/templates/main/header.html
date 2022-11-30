@@ -58,6 +58,7 @@
                 {% endif %}
                 {% if request.user.is_authenticated %}
                 <li class="nav-item"><a href="{% url "users:logout" %}" class="nav-link">Выйти</a></li>
+                <li class="nav-item"><a href="{% url "users:user_profile" user.email %}" class="nav-link">Изменить профиль</a></li>
                 {% else %}
                     <li class="nav-item"><a href="{% url "users:login" %}" class="nav-link active">ВХОД</a></li>
                 {% endif %}

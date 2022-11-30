@@ -21,9 +21,6 @@ class ProfileView(UpdateView):
             return self.request.user
 
     def form_valid(self, form):
-        clean = form.cleaned_data 
-        context = {}        #ВООООООООООООООООООООООООООООООООООООООООООООООООООООООТ ТТТТТТТТТТТТТУУУУУУУУУУУУУТТТТТТТТТТТТТ ОШИИИИИИИИИИИИИИИИИИИИББББЕП
-        self.object = context.save(clean) 
         return super(ProfileView, self).form_valid(form)    
 
 

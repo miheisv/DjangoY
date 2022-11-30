@@ -1,7 +1,7 @@
 {% extends 'main/form.html' %}
 {% block name %}
-    Выход
+    Вы успешно вышли!
 {% endblock %}
 {% block button %}
-Выйти
+<a href="{% url "homepage:home" %}" class="btn btn-primary">На главную</a>
 {% endblock %}

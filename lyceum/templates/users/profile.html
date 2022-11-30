@@ -6,4 +6,6 @@
 Свалил отсюда!
 {% endif %}
 {% endblock name %}}
-{% block button%}Изменить{% endblock %}
+{% block button%}
+<button href="{% url "users:user_detail" user.email %}" type="submit" class="btn btn-primary">Изменить</button>
+{% endblock %}

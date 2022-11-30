@@ -37,34 +37,49 @@
                     <li class="nav-item"><a href="{% url "catalog:item_list" %}" class="nav-link">Список товаров</a></li>
                     <li class="nav-item"><a href="{% url "about:description" %}" class="nav-link">О нас</a></li>
                     <li class="nav-item"><a href="{% url "feedback:feedback" %}" class="nav-link">Обратная связь</a></li>
-                {% endif %}
-                {% if view_name == 'about:description' %}
+                {% elif view_name == 'about:description' %}
                     <li class="nav-item"><a href="{% url "homepage:home" %}" class="nav-link" aria-current="page">Главная</a></li>
                     <li class="nav-item"><a href="{% url "catalog:item_list" %}" class="nav-link">Список товаров</a></li>
                     <li class="nav-item"><a href="{% url "about:description" %}" class="nav-link active">О нас</a></li>
                     <li class="nav-item"><a href="{% url "feedback:feedback" %}" class="nav-link">Обратная связь</a></li>
-                {% endif %}
-                {% if view_name == 'catalog:item_list' %}
+                {% elif view_name == 'catalog:item_list' %}
                     <li class="nav-item"><a href="{% url "homepage:home" %}" class="nav-link" aria-current="page">Главная</a></li>
                     <li class="nav-item"><a href="{% url "catalog:item_list" %}" class="nav-link active">Список товаров</a></li>
                     <li class="nav-item"><a href="{% url "about:description" %}" class="nav-link">О нас</a></li>
                     <li class="nav-item"><a href="{% url "feedback:feedback" %}" class="nav-link">Обратная связь</a></li>
-                {% endif %}
-                {% if view_name == 'feedback:feedback' %}
+                {% elif view_name == 'feedback:feedback' %}
                     <li class="nav-item"><a href="{% url "homepage:home" %}" class="nav-link" aria-current="page">Главная</a></li>
                     <li class="nav-item"><a href="{% url "catalog:item_list" %}" class="nav-link">Список товаров</a></li>
                     <li class="nav-item"><a href="{% url "about:description" %}" class="nav-link">О нас</a></li>
                     <li class="nav-item"><a href="{% url "feedback:feedback" %}" class="nav-link active">Обратная связь</a></li>
+                {% else %}
+                    <li class="nav-item"><a href="{% url "homepage:home" %}" class="nav-link" aria-current="page">Главная</a></li>
+                    <li class="nav-item"><a href="{% url "catalog:item_list" %}" class="nav-link">Список товаров</a></li>
+                    <li class="nav-item"><a href="{% url "about:description" %}" class="nav-link">О нас</a></li>
+                    <li class="nav-item"><a href="{% url "feedback:feedback" %}" class="nav-link">Обратная связь</a></li>
                 {% endif %}
                 {% if request.user.is_authenticated %}
-                <li class="nav-item"><a href="{% url "users:logout" %}" class="nav-link">Выйти</a></li>
-                <li class="nav-item"><a href="{% url "users:user_profile" user.email %}" class="nav-link">Изменить профиль</a></li>
+                    {% if request.user.is_staff %} 
+                        {% if view_name == 'users:user_list' %}
+                            <li class="nav-item"><a href="{% url "users:user_list" %}" class="nav-link active">Список пользователей</a></li>
+                        {% else %}
+                            <li class="nav-item"><a href="{% url "users:user_list" %}" class="nav-link">Список пользователей</a></li>
+                        {% endif %}
+                    {% endif %}
+                    {% if view_name == 'users:user_profile' %}
+                        <li class="nav-item"><a href="{% url "users:user_profile" user.email %}" class="nav-link active">Изменить профиль</a></li>
+                        <li class="nav-item"><a href="{% url "users:logout" %}" class="nav-link">Выйти</a></li>
+                    {% elif view_name == 'users:logout'  %}
+                        <li class="nav-item"><a href="{% url "users:user_profile" user.email %}" class="nav-link">Изменить профиль</a></li>
+                        <li class="nav-item"><a href="{% url "users:logout" %}" class="nav-link active">Выйти</a></li>
+                    {% else %}
+                      <li class="nav-item"><a href="{% url "users:user_profile" user.email %}" class="nav-link">Изменить профиль</a></li>
+                      <li class="nav-item"><a href="{% url "users:logout" %}" class="nav-link">Выйти</a></li>
+                    {% endif %}
                 {% else %}
-                    <li class="nav-item"><a href="{% url "users:login" %}" class="nav-link active">ВХОД</a></li>
+                    <li class="nav-item"><a href="{% url "users:login" %}" class="nav-link active">Вход</a></li>
+                    <li class="nav-item"><a href="{% url "users:signup" %}" class="nav-link">Регистрация</a></li>
                 {% endif %}
-                {% if not request.user.is_authenticated %}
-
-              {% endif %}
             {% endwith %}
           </ul>
         </header>

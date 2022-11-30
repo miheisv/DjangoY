@@ -1,9 +1,5 @@
-{% extends 'main/mainpage.html' %}
+{% extends 'main/form.html' %}
 {% block name %}Регистрация{% endblock name %}}
-{% block content %}
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Sign up</button>
-</form>
-{% endblock content %}
+{% block button %}
+  <button type="submit">Зарегистрироваться</button>
+{% endblock %}

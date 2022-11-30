@@ -38,12 +38,11 @@
                         </div>
                     </div>
                 {% endfor %}
-                <button type="submit" class="btn btn-primary">
                 {% block  button %}
-                Кнопка
+                    <button type="submit" class="btn btn-primary">Кнопка</button>
                 {% endblock  %}
-                </button>
             </form>
+            {% block out_of_form %}{% endblock out_of_form %}
         </div>
     </div>    
 {% endblock %}

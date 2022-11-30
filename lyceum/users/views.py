@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
 
@@ -13,7 +13,7 @@ class SignUpView(CreateView):
 
 class ProfileView(UpdateView):
     form_class = CustomUserChangeForm
-    success_url = reverse_lazy('users:login')
+    success_url = reverse_lazy('homepage:home')
     template_name = 'users/profile.html'
 
     def get_object(self, queryset=None):
@@ -26,7 +26,7 @@ class ProfileView(UpdateView):
 def user_detail(request, email):
     if request.user.is_authenticated:
         template_name = 'users/user_detail.html'
-        user = CustomUser.objects.get(email=email)
+        user = get_object_or_404(CustomUser, email=email)
         context = {
             'user': user,
         }
@@ -38,7 +38,7 @@ def user_detail(request, email):
 def user_list(request):
     if request.user.is_authenticated:
         template_name = 'users/user_list.html'
-        users = CustomUser.objects.filter(is_active=True)
+        users = get_list_or_404(CustomUser.objects.filter(is_active=True))
         context = {
             'users': users,
         }

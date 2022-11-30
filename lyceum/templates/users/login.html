@@ -3,5 +3,6 @@
     Вход
 {% endblock %}
 {% block button %}
-Войти
+<button type="submit" class="btn btn-primary">Войти</button>
+<a href="{% url "users:password_reset" %}" class="btn btn-primary">Восстановить пароль</a>
 {% endblock %}

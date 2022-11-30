@@ -5,7 +5,6 @@ from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
 
 
-
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('users:login')
@@ -21,8 +20,7 @@ class ProfileView(UpdateView):
             return self.request.user
 
     def form_valid(self, form):
-        return super(ProfileView, self).form_valid(form)    
-
+        return super(ProfileView, self).form_valid(form)
 
 
 def user_detail(request, email):
